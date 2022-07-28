@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import TemperatureDisplay from './components/TemperatureDisplay';
+import IncreaseButton from './components/IncreaseButton';
+import DecreaseButton from './components/DecreaseButton';
 
 function App() {
+  let [temp, setTemp] = useState(10);
+  let [color, setColor] = useState('yellow');
+  const hotColor = 'red';
+  const coldColor = 'blue';
+  const neutralColor = 'yellow';
+
+  const submitHandlerPlus = () => {
+    temp++;
+    setTemp(temp);
+    changeColor(temp);
+  }
+
+  const submitHandlerMinus = () => {
+    temp--;
+    setTemp(temp);
+    changeColor(temp);
+  }
+
+  const changeColor = (temp) => {
+    if(temp > 15){
+      setColor(hotColor);
+    }
+    else if (temp < 0){
+      setColor(coldColor);
+    }else{
+      setColor(neutralColor);
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TemperatureDisplay val={temp} col={color}/>
+      <div className="buttons">
+        <IncreaseButton submitFunc={submitHandlerPlus}/>
+        <DecreaseButton submitFunc={submitHandlerMinus}/>
+      </div>
     </div>
   );
 }

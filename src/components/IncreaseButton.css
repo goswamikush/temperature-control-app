@@ -1,0 +1,13 @@
+.increase-button {
+    position: absolute;
+    top: 550px;
+    left: 825px;
+    font-size: 50px;
+    text-align: center;
+    width: 100px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background-color: #f44336;
+    color: #f5f5f5;
+}
